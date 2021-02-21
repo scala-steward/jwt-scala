@@ -35,8 +35,8 @@ trait JwtJsonImplicits {
 
   private def keyToPath(key: String): JsPath = new JsPath(List(new KeyPathNode(key)))
 
-  implicit val jwtPlayJsonClaimReader = new Reads[JwtClaim] {
-    def reads(json: JsValue) = json match {
+  implicit val jwtPlayJsonClaimReader: Reads[JwtClaim] = Reads { (json: JsValue) =>
+    json match {
       case value: JsObject =>
         try {
           JsSuccess(
@@ -66,8 +66,8 @@ trait JwtJsonImplicits {
     def writes(claim: JwtClaim) = Json.parse(claim.toJson)
   }
 
-  implicit val jwtPlayJsonHeaderReader = new Reads[JwtHeader] {
-    def reads(json: JsValue) = json match {
+  implicit val jwtPlayJsonHeaderReader: Reads[JwtHeader] = Reads { (json: JsValue) =>
+    json match {
       case value: JsObject =>
         try {
           JsSuccess(
