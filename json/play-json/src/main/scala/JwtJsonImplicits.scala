@@ -62,8 +62,8 @@ trait JwtJsonImplicits {
     }
   }
 
-  implicit val jwtPlayJsonClaimWriter = new Writes[JwtClaim] {
-    def writes(claim: JwtClaim) = Json.parse(claim.toJson)
+  implicit val jwtPlayJsonClaimWriter: Writes[JwtClaim] = Writes { (claim: JwtClaim) =>
+    Json.parse(claim.toJson)
   }
 
   implicit val jwtPlayJsonHeaderReader: Reads[JwtHeader] = Reads { (json: JsValue) =>
@@ -86,8 +86,8 @@ trait JwtJsonImplicits {
     }
   }
 
-  implicit val jwtPlayJsonHeaderWriter = new Writes[JwtHeader] {
-    def writes(header: JwtHeader) = Json.parse(header.toJson)
+  implicit val jwtPlayJsonHeaderWriter: Writes[JwtHeader] = Writes { (header: JwtHeader) =>
+    Json.parse(header.toJson)
   }
 
   implicit class RichJwtClaim(claim: JwtClaim) {
