@@ -16,7 +16,7 @@ jobs:
         with:
           java-version: 11
       - name: Checking code formatting
-        run: sbt formatCheck
+        run: sbt formatCheck scalafixAll
   main:
     name: scala-simple-matrix
     runs-on: ubuntu-latest
